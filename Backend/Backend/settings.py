@@ -13,6 +13,13 @@ DEBUG = Debug
 
 ALLOWED_HOSTS = []
 
+# My App in Project 
+LOCAL_APPS = [
+    
+    'rest_framework',
+    'Users'
+]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,8 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    
 ]
+
+
+INSTALLED_APPS += LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,3 +98,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Set User Custom 
+AUTH_USER_MODEL = 'Users.Acounts'

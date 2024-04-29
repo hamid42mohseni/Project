@@ -3,11 +3,10 @@ from django.contrib.auth.models import PermissionsMixin , AbstractBaseUser
 from django.utils import timezone
 from .manager import Manager
 # Create Table User
-class Acounts(AbstractBaseUser , PermissionsMixin):
-
+class User(AbstractBaseUser , PermissionsMixin):
+    
     username = models.CharField(max_length=32 , null=True , blank=True)
     phone_number = models.CharField(max_length=13 , unique=True)
-
     is_active = models.BooleanField(default= True)
     is_staff = models.BooleanField(default=False)
 
@@ -18,4 +17,4 @@ class Acounts(AbstractBaseUser , PermissionsMixin):
     USERNAME_FIELD = "phone_number"
     REQUIRED_FIELDS = ['username']
     class Meta :
-        db_table = "Acounts"
+        db_table = "Users"

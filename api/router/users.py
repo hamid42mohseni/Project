@@ -2,10 +2,11 @@ from fastapi import Body, Depends, APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Annotated
 from _db.engine import get_db
-from core.UserBases import CoreUser
 import sys
 
 sys.path.append("..")
+# from core.UserBases import CoreUser
+from _db.core.UserBases import CoreUser
 from schema.CreateModels import UserCreate
 
 
@@ -21,19 +22,18 @@ async def RegisterUser(
     return user
 
 
-@router.get("/get")
-async def getuser(
+@router.get("/Select/{phone_number}/")
+async def SelectUser(
     db_connection: Annotated[AsyncSession, Depends(get_db)], phone_number: str
 ):
-    user = await CoreUser(db_connection).get(phone_number)
+    user = await CoreUser(db_connection).SelectUser(phone_number)
     return user
 
 
-@router.get("/login")
-async def Login(
+@router.get("/SendSms/{phone_number}")
+async def SendCode(
     db_connection: Annotated[AsyncSession, Depends(get_db)],
     phone_number: str,
-    code: str,
 ):
-    response = await CoreUser(db_connection).Login(code, phone_number)
+    response = await CoreUser(db_connection).SendCode(phone_number)
     return response

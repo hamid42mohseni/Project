@@ -4,6 +4,7 @@ from pydantic import BaseModel
 # Create User
 class UserCreate(BaseModel):
     phone_number: str
+    username: str
 
 
 class DeleteUser(BaseModel):

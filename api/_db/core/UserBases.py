@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from _db.models import User
 from Tools.Extention import CreatUserName
 from Tools import Exception
+from cache.cachTools import SmsCode
 from Jwt.jwt import JWTHandler
 
 
@@ -30,7 +31,7 @@ class CoreUser:
 
         return CreateUser
 
-    async def get(self, phone_number: str):
+    async def SelectUser(self, phone_number: str):
         query = sa.select(User).where(User.phone_number == phone_number)
         async with self.db_connection as session:
             user = await session.scalar(query)
@@ -48,8 +49,5 @@ class CoreUser:
                 raise Exception.PhoneNumberInNotCorrect
             return Exception.SmsSended
 
-    async def Login(self, code: str, phone_number: str) -> JWTHandler:
-        if code == "1212":
-            return JWTHandler.Generate(phone_number)
-
-        raise Exception.SmsNotCorrect
+    async def SendCode(self, phone_number: str) -> JWTHandler:
+        return await SmsCode(phone_number)

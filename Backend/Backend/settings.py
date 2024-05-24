@@ -8,7 +8,7 @@ SECRET_KEY = SecretKey
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = Debug
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # My App in Project
 LOCAL_APPS = ["Users"]

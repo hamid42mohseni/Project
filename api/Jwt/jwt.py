@@ -17,7 +17,7 @@ class JWTHandler:
     ) -> JWTResponsePaylad:
         ExpTime = Local_setting.ACCESS_TOKEN_EXP_MINUTE
         SecretKey = Local_setting.SecretKey
-        ExpDelta = datetime.utcnow() + timedelta(minutes=ExpTime)
+        ExpDelta = datetime.now() + timedelta(minutes=ExpTime)
 
         Encode = {
             "exp": ExpTimeStamp if ExpTimeStamp else ExpDelta,

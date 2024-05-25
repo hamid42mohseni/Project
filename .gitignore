@@ -1,5 +1,6 @@
 __pycache__
 .venv
+__init__.py
 .vscode
 .mypy_cache
 # Logs

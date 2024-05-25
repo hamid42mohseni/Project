@@ -21,5 +21,5 @@ class SmsNotCorrect(HTTPException):
 
 class SmsSended(HTTPException):
     def __init__(self) -> None:
-        self.status_code = status.HTTP_202_ACCEPTED
-        self.detail = "send!"
+        self.status_code = status.HTTP_200_OK
+        self.detail = "Already provided"

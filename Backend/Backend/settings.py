@@ -1,5 +1,6 @@
 from pathlib import Path
 from .Local_setting import DataBase, Debug, SecretKey
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,7 +12,7 @@ DEBUG = Debug
 ALLOWED_HOSTS = ["*"]
 
 # My App in Project
-LOCAL_APPS = ["Users"]
+LOCAL_APPS = ["Users", "products"]
 
 # Application definition
 INSTALLED_APPS = [
@@ -92,3 +93,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Set User Custom
 AUTH_USER_MODEL = "Users.User"
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR)
+MEDIA_URL = "/Upload/"

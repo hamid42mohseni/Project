@@ -1,9 +1,11 @@
-function App() {
+import Header from "./components/Header"
 
+function App() {
   return (
-    <>
-    <h1>hi its for test</h1>
-    </>
+    <div className="Test">
+        <Header />
+              
+    </div>
   )
 }
 

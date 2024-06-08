@@ -1,0 +1,21 @@
+{
+  "editor.fontSize": 18,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "error",
+    "reportMissingImports": "error",
+    "reportMissingModuleSource": "error"
+  },
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "on",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "workbench.colorTheme": "Default Dark+",
+  "python.analysis.extraPaths": ["./api/_db"],
+  "workbench.editor.openSideBySideDirection": "down",
+  "editor.minimap.side": "right",
+  "workbench.panel.defaultLocation": "left",
+  "workbench.sideBar.location": "left"
+}

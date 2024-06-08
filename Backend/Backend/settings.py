@@ -1,7 +1,11 @@
+from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 from .Local_setting import DataBase, Debug, SecretKey
 import os
 
+
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -9,10 +13,40 @@ SECRET_KEY = SecretKey
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = Debug
 
+
+# Rest Frame Work
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
+# Jwt Simple
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "id",
+}
+
 ALLOWED_HOSTS = ["*"]
 
 # My App in Project
-LOCAL_APPS = ["Users", "products"]
+LOCAL_APPS = [
+    "Users",
+    "products",
+    "api",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "corsheaders",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -34,6 +68,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "Backend.urls"
@@ -97,3 +132,7 @@ AUTH_USER_MODEL = "Users.User"
 
 MEDIA_ROOT = os.path.join(BASE_DIR)
 MEDIA_URL = "/Upload/"
+
+# For Access To Api
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True
